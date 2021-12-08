@@ -33,25 +33,4 @@ class TennisGameDisplayTest {
 
         assertThat(result).isEqualTo("Current game status : advantage");
     }
-
-    @Test
-    void should_display_nothing_when_player_2_wins_the_game() {
-        String result = TennisGameDisplay.displayGameScore(0, 4);
-
-        assertThat(result).isEmpty();
-    }
-
-    @Test
-    void should_display_nothing_when_player_1_wins_the_game() {
-        String result = TennisGameDisplay.displayGameScore(4, 0);
-
-        assertThat(result).isEmpty();
-    }
-
-    @Test
-    void should_display_nothing_when_player_1_wins_the_game_by_scoring_6_times_and_player_2_4_times() {
-        String result = TennisGameDisplay.displayGameScore(6, 4);
-
-        assertThat(result).isEmpty();
-    }
 }

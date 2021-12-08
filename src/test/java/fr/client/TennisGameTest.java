@@ -106,6 +106,54 @@ public class TennisGameTest {
         assertThat(result).isEqualTo("Current game status : advantage");
     }
 
+    @Test
+    void should_display_nothing_when_player_2_wins_the_game() {
+        makePlayer2Scores(4);
+
+        String result = sut.displayGameScore();
+
+        assertThat(result).isEmpty();
+    }
+
+    @Test
+    void should_display_nothing_when_player_1_wins_the_game() {
+        makePlayer1Scores(4);
+
+        String result = sut.displayGameScore();
+
+        assertThat(result).isEmpty();
+    }
+
+    @Test
+    void should_display_nothing_when_player_1_wins_the_game_by_scoring_6_times_and_player_2_4_times() {
+        makePlayer1Scores(6);
+        makePlayer2Scores(4);
+
+        String result = sut.displayGameScore();
+
+        assertThat(result).isEmpty();
+    }
+
+    @Test
+    void should_reset_players_scores_when_player_1_wins_the_game() {
+        makePlayer1Scores(4);
+
+        var result = sut.displayGameScore();
+
+        assertThat(result).isEmpty();
+        assertThat(sut.getPlayer1Score()).isZero();
+    }
+
+    @Test
+    void should_reset_players_scores_when_player_2_wins_the_game() {
+        makePlayer2Scores(4);
+
+        var result = sut.displayGameScore();
+
+        assertThat(result).isEmpty();
+        assertThat(sut.getPlayer2Score()).isZero();
+    }
+
     private void makePlayer1Scores(int numberOfTimes) {
         for (int i = 0; i < numberOfTimes; i++) {
             sut.player1Scores();
