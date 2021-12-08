@@ -155,14 +155,10 @@ public class TennisGameTest {
     }
 
     private void makePlayer1Scores(int numberOfTimes) {
-        for (int i = 0; i < numberOfTimes; i++) {
-            sut.player1Scores();
-        }
+        sut.player1Scores(numberOfTimes);
     }
 
     private void makePlayer2Scores(int numberOfTimes) {
-        for (int i = 0; i < numberOfTimes; i++) {
-            sut.player2Scores();
-        }
+        sut.player2Scores(numberOfTimes);
     }
 }

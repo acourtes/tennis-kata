@@ -20,12 +20,12 @@ public class TennisGame {
         player2Score = 0;
     }
 
-    public void player1Scores() {
-        player1Score++;
+    public void player1Scores(int numberOfTimes) {
+        player1Score += numberOfTimes;
     }
 
-    public void player2Scores() {
-        player2Score++;
+    public void player2Scores(int numberOfTimes) {
+        player2Score += numberOfTimes;
     }
 
     public int getPlayer1Score() {

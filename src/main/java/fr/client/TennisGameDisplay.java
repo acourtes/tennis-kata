@@ -10,7 +10,7 @@ import static fr.client.TennisConstants.THIRTY;
 
 public final class TennisGameDisplay {
     private static final String CURRENT_GAME_STATUS = "Current game status : ";
-    private static final String gameScoreDisplay = "%s-%s";
+    private static final String GAME_SCORE_FORMAT = "%s-%s";
     private static final String DEUCE = "deuce";
     private static final String ADVANTAGE = "advantage";
 
@@ -36,7 +36,7 @@ public final class TennisGameDisplay {
             return DEUCE;
         }
 
-        return gameScoreDisplay.formatted(pointsToGameScore.get(player1Score),
+        return GAME_SCORE_FORMAT.formatted(pointsToGameScore.get(player1Score),
                 pointsToGameScore.get(player2Score));
     }
 
