@@ -8,6 +8,7 @@ public final class TennisGameDisplay {
     private static final String gameScoreDisplay = "%s-%s";
     private static final String DEUCE = "deuce";
     private static final String ADVANTAGE = "advantage";
+    private static final String EMPTY_STRING = "";
 
     private static final Map<Integer, String> pointsToGameScore = new HashMap<>(4);
 
@@ -24,6 +25,10 @@ public final class TennisGameDisplay {
     }
 
     public static String displayGameScore(int player1Score, int player2Score) {
+        if (aPlayerWins(player1Score, player2Score)) {
+            return EMPTY_STRING;
+        }
+
         return CURRENT_GAME_STATUS + getGameScore(player1Score, player2Score);
     }
 
@@ -40,12 +45,29 @@ public final class TennisGameDisplay {
                 pointsToGameScore.get(player2Score));
     }
 
+    private static boolean aPlayerWins(int player1Score, int player2Score) {
+        return atLeastAPlayerHasMoreThanForty(player1Score, player2Score)
+                && playersHaveAtLeastTwoPointsOfDifference(player1Score, player2Score);
+    }
+
+    private static boolean playersHaveAtLeastTwoPointsOfDifference(int player1Score, int player2Score) {
+        return Math.abs(player1Score - player2Score) >= 2;
+    }
+
+    private static boolean atLeastAPlayerHasMoreThanForty(int player1Score, int player2Score) {
+        return player1Score > FORTY || player2Score > FORTY;
+    }
+
     private static boolean isDeuce(int player1Score, int player2Score) {
         return player1Score == FORTY && player2Score == FORTY;
     }
 
     private static boolean isAdvantage(int player1Score, int player2Score) {
         return player1Score >= FORTY &&
-                Math.abs(player1Score - player2Score) == FIFTEEN;
+                player1AndPlayer2HaveADifferenceOfOnePoint(player1Score, player2Score);
+    }
+
+    private static boolean player1AndPlayer2HaveADifferenceOfOnePoint(int player1Score, int player2Score) {
+        return Math.abs(player1Score - player2Score) == 1;
     }
 }
