@@ -22,7 +22,7 @@ public class TennisGameTest {
 
     @Test
     void should_display_15_0_when_player_1_scores() {
-        makePlayer1Plays(1);
+        makePlayer1Scores(1);
 
         String result = sut.displayGameScore();
 
@@ -31,7 +31,7 @@ public class TennisGameTest {
 
     @Test
     void should_display_30_0_when_player_1_scores_twice() {
-        makePlayer1Plays(2);
+        makePlayer1Scores(2);
 
         String result = sut.displayGameScore();
 
@@ -40,16 +40,59 @@ public class TennisGameTest {
 
     @Test
     void should_display_40_0_when_player_1_scores_three_times() {
-        makePlayer1Plays(3);
+        makePlayer1Scores(3);
 
         String result = sut.displayGameScore();
 
         assertThat(result).isEqualTo("Current game status : 40-0");
     }
 
-    private void makePlayer1Plays(int numberOfTimes) {
+    @Test
+    void should_display_0_15_when_player_2_scores() {
+        makePlayer2Scores(1);
+
+        String result = sut.displayGameScore();
+
+        assertThat(result).isEqualTo("Current game status : 0-15");
+    }
+
+    @Test
+    void should_display_0_30_when_player_2_scores_twice() {
+        makePlayer2Scores(2);
+
+        String result = sut.displayGameScore();
+
+        assertThat(result).isEqualTo("Current game status : 0-30");
+    }
+
+    @Test
+    void should_display_0_40_when_player_2_scores_three_times() {
+        makePlayer2Scores(3);
+
+        String result = sut.displayGameScore();
+
+        assertThat(result).isEqualTo("Current game status : 0-40");
+    }
+
+    @Test
+    void should_display_15_40_when_player_2_scores_three_times_and_player_1_once() {
+        makePlayer2Scores(3);
+        makePlayer1Scores(1);
+
+        String result = sut.displayGameScore();
+
+        assertThat(result).isEqualTo("Current game status : 15-40");
+    }
+
+    private void makePlayer1Scores(int numberOfTimes) {
         for (int i = 0; i < numberOfTimes; i++) {
             sut.player1Scores();
+        }
+    }
+
+    private void makePlayer2Scores(int numberOfTimes) {
+        for (int i = 0; i < numberOfTimes; i++) {
+            sut.player2Scores();
         }
     }
 }

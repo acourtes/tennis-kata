@@ -5,6 +5,9 @@ import java.util.Map;
 
 public class TennisGame {
     private int player1Score;
+    private int player2Score;
+
+    private final String gameScoreDisplay = "Current game status : %s-%s";
 
     private static final Map<Integer, String> pointsToGameScore = new HashMap<>(4);
 
@@ -16,12 +19,15 @@ public class TennisGame {
     }
 
     public String displayGameScore() {
-        return "Current game status : " +
-                pointsToGameScore.get(player1Score) +
-                "-0";
+        return gameScoreDisplay.formatted(pointsToGameScore.get(player1Score),
+                pointsToGameScore.get(player2Score));
     }
 
     public void player1Scores() {
         player1Score++;
+    }
+
+    public void player2Scores() {
+        player2Score++;
     }
 }
