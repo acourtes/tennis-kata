@@ -1,15 +1,24 @@
 package fr.client;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class TennisGame {
-    short player1Score;
+    private int player1Score;
+
+    private static final Map<Integer, String> pointsToGameScore = new HashMap<>(4);
+
+    static {
+        pointsToGameScore.put(0, "0");
+        pointsToGameScore.put(1, "15");
+        pointsToGameScore.put(2, "30");
+        pointsToGameScore.put(3, "40");
+    }
 
     public String displayGameScore() {
-        if (player1Score == 1) {
-            return "Current game status : 15-0";
-        } else if (player1Score == 2) {
-            return "Current game status : 30-0";
-        }
-        return "Current game status : 0-0";
+        return "Current game status : " +
+                pointsToGameScore.get(player1Score) +
+                "-0";
     }
 
     public void player1Scores() {
