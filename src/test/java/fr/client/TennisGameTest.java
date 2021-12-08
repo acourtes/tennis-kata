@@ -94,6 +94,18 @@ public class TennisGameTest {
         assertThat(result).isEqualTo("Current game status : deuce");
     }
 
+    @Test
+    void should_display_advantage_when_player_2_scored_5_times_and_player_1_scored_4_times() {
+        makePlayer1Scores(3);
+        makePlayer2Scores(4); // advantage
+        makePlayer1Scores(1); // deuce
+        makePlayer2Scores(1); // advantage
+
+        String result = sut.displayGameScore();
+
+        assertThat(result).isEqualTo("Current game status : advantage");
+    }
+
     private void makePlayer1Scores(int numberOfTimes) {
         for (int i = 0; i < numberOfTimes; i++) {
             sut.player1Scores();
