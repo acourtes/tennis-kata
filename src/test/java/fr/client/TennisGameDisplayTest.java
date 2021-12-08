@@ -19,4 +19,11 @@ class TennisGameDisplayTest {
 
         assertThat(result).isEqualTo("Current game status : 15-30");
     }
+
+    @Test
+    void should_display_advantage_when_player_1_scored_4_times_and_player_2_3_times() {
+        var result = TennisGameDisplay.displayGameScore(4, 3);
+
+        assertThat(result).isEqualTo("Current game status : advantage");
+    }
 }
