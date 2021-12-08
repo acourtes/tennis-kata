@@ -7,7 +7,9 @@ public class TennisGame {
     private int player1Score;
     private int player2Score;
 
-    private final String gameScoreDisplay = "Current game status : %s-%s";
+    private static final String CURRENT_GAME_STATUS = "Current game status : ";
+    private final String gameScoreDisplay = "%s-%s";
+    private static final String DEUCE = "deuce";
 
     private static final Map<Integer, String> pointsToGameScore = new HashMap<>(4);
 
@@ -19,6 +21,14 @@ public class TennisGame {
     }
 
     public String displayGameScore() {
+        return CURRENT_GAME_STATUS + setGameScore();
+    }
+
+    private String setGameScore() {
+        if (player1Score == 3 && player2Score == 3) {
+            return DEUCE;
+        }
+
         return gameScoreDisplay.formatted(pointsToGameScore.get(player1Score),
                 pointsToGameScore.get(player2Score));
     }

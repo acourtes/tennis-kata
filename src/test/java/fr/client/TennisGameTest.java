@@ -84,6 +84,16 @@ public class TennisGameTest {
         assertThat(result).isEqualTo("Current game status : 15-40");
     }
 
+    @Test
+    void should_display_deuce_when_player_2_and_player_1_have_40_40() {
+        makePlayer2Scores(3);
+        makePlayer1Scores(3);
+
+        String result = sut.displayGameScore();
+
+        assertThat(result).isEqualTo("Current game status : deuce");
+    }
+
     private void makePlayer1Scores(int numberOfTimes) {
         for (int i = 0; i < numberOfTimes; i++) {
             sut.player1Scores();
