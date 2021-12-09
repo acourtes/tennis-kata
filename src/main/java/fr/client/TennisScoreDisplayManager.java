@@ -1,18 +1,23 @@
 package fr.client;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static fr.client.TennisConstants.FIFTEEN;
 import static fr.client.TennisConstants.FORTY;
 import static fr.client.TennisConstants.LOVE;
 import static fr.client.TennisConstants.THIRTY;
 
-public final class TennisGameDisplay {
+public final class TennisScoreDisplayManager {
     private static final String CURRENT_GAME_STATUS = "Current game status : ";
     private static final String GAME_SCORE_FORMAT = "%s-%s";
     private static final String DEUCE = "deuce";
     private static final String ADVANTAGE = "advantage";
+    static final String SCORE = "Score : ";
+    static final String SET_FORMAT = "(%d-%d)";
+    static final String SPACE = " ";
 
     private static final Map<Integer, String> pointsToGameScore = new HashMap<>(4);
 
@@ -51,5 +56,11 @@ public final class TennisGameDisplay {
 
     private static boolean player1AndPlayer2HaveADifferenceOfOnePoint(int player1Score, int player2Score) {
         return Math.abs(player1Score - player2Score) == 1;
+    }
+
+    public static String displaySetScore(List<TennisSet> sets) {
+        return TennisScoreDisplayManager.SCORE + sets.stream()
+                .map(set -> TennisScoreDisplayManager.SET_FORMAT.formatted(set.numberOfGamesForPlayer1(), set.numberOfGamesForPlayer2()))
+                .collect(Collectors.joining(TennisScoreDisplayManager.SPACE));
     }
 }

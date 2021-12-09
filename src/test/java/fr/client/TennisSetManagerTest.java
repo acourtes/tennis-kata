@@ -58,6 +58,30 @@ public class TennisSetManagerTest {
         assertThat(result).isEqualTo("Score : (6-0) (1-0)");
     }
 
+    @Test
+    void should_display_sets_for_a_complete_match() {
+        makePlayer1WinGames(5);
+        makePlayer2WinGames(1);
+        makePlayer1WinGames(1);
+
+        makePlayer1WinGames(5);
+        makePlayer2WinGames(5);
+        makePlayer1WinGames(2);
+
+        makePlayer1WinGames(2);
+        makePlayer2WinGames(6);
+
+        makePlayer1WinGames(5);
+        makePlayer2WinGames(7);
+
+        makePlayer1WinGames(4);
+        makePlayer2WinGames(6);
+
+        String result = sut.displaySetScore();
+
+        assertThat(result).isEqualTo("Score : (6-1) (7-5) (2-6) (5-7) (4-6)");
+    }
+
     private void makePlayer1WinGames(int numberOfGames) {
         sut.setNumberOfGamesForPlayer1(numberOfGames);
     }

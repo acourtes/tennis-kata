@@ -12,7 +12,7 @@ public class TennisGame {
             return EMPTY_STRING;
         }
 
-        return TennisGameDisplay.displayGameScore(player1Score, player2Score);
+        return TennisScoreDisplayManager.displayGameScore(player1Score, player2Score);
     }
 
     private void resetPlayersScore() {

@@ -2,12 +2,9 @@ package fr.client;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class TennisSetManager {
-    private static final String SCORE = "Score : ";
-    private static final String SET_FORMAT = "(%d-%d)";
-    private static final String SPACE = " ";
+    private static final int MAX_NUMBER_OF_SETS = 5;
 
     private final List<TennisSet> sets;
     private TennisSet currentTennisSet;
@@ -19,9 +16,7 @@ public class TennisSetManager {
     }
 
     public String displaySetScore() {
-        return SCORE + sets.stream()
-                .map(set -> SET_FORMAT.formatted(set.numberOfGamesForPlayer1(), set.numberOfGamesForPlayer2()))
-                        .collect(Collectors.joining(SPACE));
+        return TennisScoreDisplayManager.displaySetScore(sets);
     }
 
     public void setNumberOfGamesForPlayer1(int numberOfGamesForPlayer1) {
@@ -39,9 +34,13 @@ public class TennisSetManager {
     }
 
     private void createNewSetIfCurrentSetIsWon() {
-        if (currentTennisSet.isSetWon()) {
+        if (currentTennisSet.isSetWon() && maximumNumberOfSetsNotYetReached()) {
             currentTennisSet = new TennisSet();
             sets.add(currentTennisSet);
         }
+    }
+
+    private boolean maximumNumberOfSetsNotYetReached() {
+        return sets.size() < MAX_NUMBER_OF_SETS;
     }
 }
