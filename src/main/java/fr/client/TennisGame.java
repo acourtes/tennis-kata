@@ -1,5 +1,6 @@
 package fr.client;
 
+// TODO make this class update the number of games in tennis set manager
 public class TennisGame {
     private static final String EMPTY_STRING = "";
 
