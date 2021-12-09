@@ -1,49 +1,27 @@
 package fr.client;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
-public class TennisSetTest {
+class TennisSetTest {
 
-    private TennisSet sut;
+    @Test
+    void should_return_true_when_set_is_won_with_6_0() {
+        var tennisSet = new TennisSet(6, 0);
 
-    @BeforeEach
-    void setUp() {
-        sut = new TennisSet();
+        var result = tennisSet.isSetWon();
+
+        assertThat(result).isTrue();
     }
 
     @Test
-    void should_display_0_0_for_first_set_at_the_beginning() {
-        String result = sut.displaySetScore();
+    void should_return_false_when_set_is_won_with_6_5() {
+        var tennisSet = new TennisSet(6, 5);
 
-        assertThat(result).isEqualTo("Score : (0-0)");
-    }
+        var result = tennisSet.isSetWon();
 
-    @Test
-    void should_display_1_0_when_player_one_won_a_game() {
-        makePlayer1WinGames(1);
-
-        String result = sut.displaySetScore();
-
-        assertThat(result).isEqualTo("Score : (1-0)");
-    }
-
-    @Test
-    void should_display_0_1_when_player_two_won_a_game() {
-        makePlayer2WinGames(1);
-
-        String result = sut.displaySetScore();
-
-        assertThat(result).isEqualTo("Score : (0-1)");
-    }
-
-    private void makePlayer1WinGames(int numberOfGames) {
-        sut.setNumberOfGamesForPlayer1(numberOfGames);
-    }
-
-    private void makePlayer2WinGames(int numberOfGames) {
-        sut.setNumberOfGamesForPlayer2(numberOfGames);
+        assertThat(result).isFalse();
     }
 }
